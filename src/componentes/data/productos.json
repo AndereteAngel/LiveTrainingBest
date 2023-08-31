@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "nombre": "Textiles",
+        "precio": 1000,
+        "img": "ruta/de/la/imagen1.jpg",
+        "precioPorMayor": 900,
+        "fragancias": ["Magnolias y Fresias", "Cocovai", "Flores Blancas", "Rocío", "Bamboo", "Limon", "Bubblegum", "Papaya"]
+    },
+    {
+        "id": 2,
+        "nombre": "Difusores",
+        "precio": 1200,
+        "img": "ruta/de/la/imagen1.jpg",
+        "precioPorMayor": 1080,
+        "fragancias": ["Magnolias y Fresias", "Cocovai", "Flores Blancas", "Rocío", "Bamboo", "Limon", "Bubblegum", "Papaya"]
+    },
+    {
+        "id": 3,
+        "nombre": "Aerosoles",
+        "precio": 1200,
+        "img": "ruta/de/la/imagen1.jpg",
+        "precioPorMayor": 1080,
+        "fragancias": ["Magnolias y Fresias", "Cocovai", "Flores Blancas", "Rocío", "Bamboo", "Limon", "Bubblegum", "Papaya"]
+    },
+    {
+        "id": 4,
+        "nombre": "Esencias",
+        "precio": 900,
+        "img": "ruta/de/la/imagen1.jpg",
+        "precioPorMayor": 810,
+        "fragancias": ["Magnolias y Fresias", "Cocovai", "Flores Blancas", "Rocío", "Bamboo", "Limon", "Bubblegum", "Papaya"]
+    },
+    {
+        "id": 5,
+        "nombre": "Caritas",
+        "precio": 900,
+        "img": "ruta/de/la/imagen1.jpg",
+        "precioPorMayor": 810,
+        "fragancias": ["Magnolias y Fresias", "Cocovai", "Flores Blancas", "Rocío", "Bamboo", "Limon", "Bubblegum", "Papaya"]
+    },
+    {
+        "id": 6,
+        "nombre": "Homespray",
+        "precio": 2400,
+        "img": "ruta/de/la/imagen1.jpg",
+        "precioPorMayor": 2160,
+        "fragancias": ["Magnolias y Fresias", "Cocovai", "Flores Blancas", "Rocío", "Bamboo", "Limon", "Bubblegum", "Papaya"]
+    },
+    {
+        "id": 7,
+        "nombre": "Equipos",
+        "precio": 3000,
+        "img": "ruta/de/la/imagen1.jpg",
+        "precioPorMayor": 2700,
+        "fragancias": ["Magnolias y Fresias", "Cocovai", "Flores Blancas", "Rocío", "Bamboo", "Limon", "Bubblegum", "Papaya"]
+    }
+]
