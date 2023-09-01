@@ -95,6 +95,7 @@ const CardProducto = () => {
             borderRadius: "10px",
             padding: "5px",
             background: "aquamarine",
+            
         }}>
             <h2>Qué estás buscando?</h2>
             <input
@@ -107,8 +108,11 @@ const CardProducto = () => {
                 <Card className="cardproducto" style={{
                     width: "18rem",
                     margin: "10px",
+                    border:"solid",
                     textAlign: "center",
-                    padding: "5px"
+                    padding: "5px",
+                    borderRadius:"10px",
+                    background: "linear-gradient(aquamarine, rgb(37, 37, 221))",
                 }}
                     key={producto.id}>
                     <Card.Body>

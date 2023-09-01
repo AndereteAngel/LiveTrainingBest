@@ -7,12 +7,12 @@ const Bienvenida = () => {
     const navigate = useNavigate();
 
     const Iniciar = () => {
-        setIsLoading(true); // Activar el estado de carga
+        setIsLoading(true); 
         setTimeout(() => {
             setIngreso(!ingreso);
-            setIsLoading(false); // Desactivar el estado de carga después de un tiempo simulado
+            setIsLoading(false); 
             navigate("/ItemListContainer");
-        }, 2000); // Simular un tiempo de carga de 2 segundos
+        }, 2000); 
     };
 
     return (
@@ -35,7 +35,7 @@ const Bienvenida = () => {
             >
                 {"Conócenos"}
             </button>
-            {isLoading && <Loading />} {/* Mostrar el componente Loading si isLoading es true */}
+            {isLoading && <Loading />} 
         </div>
     );
 }
