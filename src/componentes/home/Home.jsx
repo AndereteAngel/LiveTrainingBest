@@ -7,12 +7,12 @@ const Bienvenida = () => {
     const navigate = useNavigate();
 
     const Iniciar = () => {
-        setIsLoading(true); 
+        setIsLoading(true);
         setTimeout(() => {
             setIngreso(!ingreso);
-            setIsLoading(false); 
-            navigate("/ItemListContainer");
-        }, 2000); 
+            setIsLoading(false);
+            navigate("/category/productos"); 
+        }, 2000);
     };
 
     return (
@@ -35,7 +35,7 @@ const Bienvenida = () => {
             >
                 {"Conócenos"}
             </button>
-            {isLoading && <Loading />} 
+            {isLoading && <Loading />}
         </div>
     );
 }
@@ -45,4 +45,3 @@ const Loading = () => {
 }
 
 export default Bienvenida;
-

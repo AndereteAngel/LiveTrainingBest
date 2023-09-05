@@ -1,0 +1,37 @@
+
+.navbar {
+    background-color: #343a40; 
+    font-size: 16px; 
+    font-family: Arial, sans-serif; 
+}
+
+
+.navbar a.nav-link {
+    color: #343a40;
+    transition: transform 0.2s ease-in-out;
+}
+
+
+.navbar a.nav-link:hover {
+    transform: scale(1.1); 
+}
+
+
+.navbar-brand {
+    color: #302d2d; 
+    font-size: 24px; 
+    font-weight: bold; 
+    text-decoration: none; 
+}
+
+
+.navbar-brand:hover {
+    transform: none; 
+}
+
+
+.navbar img {
+    width: 30px; 
+    height: 30px;
+    margin-right: 10px; 
+}
