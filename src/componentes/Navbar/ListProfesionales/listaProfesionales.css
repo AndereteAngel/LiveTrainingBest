@@ -1,0 +1,42 @@
+
+.ListaProfesionales {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    place-self: center;
+    margin: 20px auto; 
+    max-width: 800px; 
+    padding: 20px; 
+    border-radius: 5px; 
+    background-color: #fff;
+}
+
+.ProfesionalItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%; 
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px; 
+}
+
+.ProfesionalNombre {
+    margin: 0;
+}
+
+.Categoria {
+    font-weight: bold; 
+}
+
+.ListaProfesionales h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ProfesionalItem:hover {
+    background-color: #e0e0e0; 
+    transform: scale(1.05); 
+}

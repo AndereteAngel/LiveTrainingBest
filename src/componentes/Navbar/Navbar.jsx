@@ -1,34 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom'; 
-import "./navbar.css"
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Icons from './icons';
+import Example from "../CajaDatos/CajaDatos"
 
-function BarraDeNavegacion() {
+function NavbarCategory() {
     return (
-        <>
-            <Navbar bg="dark" data-bs-theme="dark" className="navbar"> 
-                <Container>
-                    <img
-                        style={{ width: '40px', height: '40px', marginRight: '10px' }}
-                        src="https://i.pinimg.com/236x/1b/f1/3b/1bf13b28b79a2f3d1c4b1f4eb09f0ce4.jpg"
-                        alt=""
-                    />
-                    <Navbar.Brand href="#home" className="navbar-brand">OhanaAromas</Navbar.Brand> 
+        <Navbar bg="light" expand="lg">
+            <Container>
+                <Navbar.Brand href="/">Live Training</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="#features" className="nav-link">Calcula tu entrega</Nav.Link> 
-                        <Link to="/catalogo" className="nav-link">Catalogo</Link> 
+                        <Nav.Link as={Link} to="/">Home</Nav.Link>
+                        <NavDropdown title="Staff" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="/Categorias">Profes</NavDropdown.Item>
+                            <NavDropdown.Item href="/CalendarioSemanal">Dias y Horarios</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">Contacto</NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
-                    <img
-                        style={{ width: '30px', height: '30px' }}
-                        src="https://i.pinimg.com/236x/db/9f/06/db9f063dca6904b2c01cb33571cb65b1.jpg"
-                        alt=""
-                    />
-                </Container>
-            </Navbar>
-        </>
+                    <Nav>
+                        <Link to="javascript:history.go(-1)" className="nav-link">Volver</Link>
+                        <Icons />
+                        <Example/>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }
 
-export default BarraDeNavegacion;
+export default NavbarCategory;

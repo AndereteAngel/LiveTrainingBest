@@ -1,0 +1,53 @@
+.calendario-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
+.calendario-semanal {
+  text-align: center;
+  margin: 20px auto; 
+}
+
+table th {
+  background-color: #333; 
+  color: white; 
+  padding: 10px; 
+}
+
+table td {
+  border: 1px solid #ccc; 
+  padding: 10px; 
+}
+
+ul {
+  list-style: none; 
+  padding: 0; 
+}
+
+li {
+  margin-bottom: 5px; 
+}
+
+td:nth-child(1) {
+  background-color: #f8d7da; 
+}
+td:nth-child(2) {
+  background-color: #cce5ff; 
+}
+td:nth-child(3) {
+  background-color: #d4edda; 
+}
+td:nth-child(4) {
+  background-color: #fff3cd; 
+}
+td:nth-child(5) {
+  background-color: #d1ecf1; 
+}
+td:nth-child(6) {
+  background-color: #f0f8ff; 
+}
+td:nth-child(7) {
+  background-color: #f4d7da; 
+}

@@ -1,47 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import "./home.css"
 
-const Bienvenida = () => {
-    const [ingreso, setIngreso] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
-
-    const Iniciar = () => {
-        setIsLoading(true);
-        setTimeout(() => {
-            setIngreso(!ingreso);
-            setIsLoading(false);
-            navigate("/category/productos"); 
-        }, 2000);
-    };
-
+function Home() {
     return (
-        <div style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "auto",
-            marginTop: "10px",
-            borderRadius: "10px",
-            padding: "5px",
-            background: "aquamarine",
-        }}>
-            <h1>Ohana Aromas</h1>
-            <button
-                style={{ margin: "10px" }}
-                className="botonMostrarPartidos"
-                onClick={Iniciar}
-            >
-                {"Conócenos"}
-            </button>
-            {isLoading && <Loading />}
+        <div className="home-container">
+            <img
+            style={{width:"300px", height:"300px"}}
+                src="https://i.gifer.com/Q90.gif"
+                alt="Persona ejercitándose"
+                className="exercise-animation"
+            />
+            <h1 className="center-text">Bienvenido al Gimnasio Virtual</h1>
+            <p className="center-text">¡No te canses de entrenar!</p>
+            <Link to="/items" className="btn-ingresar">
+                Ingresar
+            </Link>
         </div>
     );
 }
 
-const Loading = () => {
-    return <h2>Loading...</h2>;
-}
+export default Home;
 
-export default Bienvenida;
+

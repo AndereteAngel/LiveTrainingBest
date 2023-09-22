@@ -1,22 +1,27 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './componentes/Navbar/Navbar';
-import Home from './componentes/home/Home';
-import ItemListContainer from './componentes/ItemListConteiner/ItemListContainer';
-import ItemDetailContainer from "./componentes/ItemDetailConteiner/ItemDetailContainer"; 
-import ProductosVenta from './componentes/poductosVenta/PoductosVenta';
+import NavbarCategory from "./componentes/Navbar/Navbar"
+import Home from "./componentes/Home/Home"
+import ItemListContainer from "./componentes/ItemListConteiner/ItemListConteiner"
+import ItemListDetail from "./componentes/ItemListDetail/ItemListDetail"
+import { ClasesProvider } from "./componentes/clasesContext"
+import ItemDetail from "./componentes/ItemListDetail/ItemDetail"
+import Categorias from './componentes/Navbar/ListProfesionales/Categorias';
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:categoryType" element={<ItemListContainer />} />
-        <Route path="/item/:id" element={<ItemDetailContainer />} />
-        <Route path="/catalogo" element={<ProductosVenta />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <ClasesProvider>
+        <NavbarCategory />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/items" element={<ItemListContainer />} />
+          <Route path="/item/:id" element={<ItemListDetail />} />
+          <Route path="/CalendarioSemanal" element={<ItemDetail />} />
+          <Route path="/Categorias" element={<Categorias />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ClasesProvider>
     </BrowserRouter>
   );
 }
