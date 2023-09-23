@@ -6,10 +6,12 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Icons from './icons';
 import Example from "../CajaDatos/CajaDatos"
+import "./navbar.css"
 
-function NavbarCategory() {
+function NavbarCategory(props) {
+
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar style={{ backgroundColor: 'var(--color-primario)' }} expand="lg">
             <Container>
                 <Navbar.Brand href="/">Live Training</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -22,11 +24,15 @@ function NavbarCategory() {
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">Contacto</NavDropdown.Item>
                         </NavDropdown>
+                        <Example />
                     </Nav>
                     <Nav>
-                        <Link to="javascript:history.go(-1)" className="nav-link">Volver</Link>
-                        <Icons />
-                        <Example/>
+                    <Icons />Calendario
+                        <Link to="/ItemListContainer">
+                            <button style={{ backgroundColor: 'var(--color-secundario)', marginLeft:"20px", borderRadius:"10px" }}>
+                                Volver
+                            </button>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

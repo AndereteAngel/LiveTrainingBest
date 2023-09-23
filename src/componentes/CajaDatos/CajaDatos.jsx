@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useClases } from "../clasesContext";
 import clasesData from "../Data/clases.json";
+import "./cajaDatos.css"
 
 function Example() {
     const [show, setShow] = useState(false);
@@ -24,25 +25,25 @@ function Example() {
 
     return (
         <>
-           <div style={{ position: 'relative' }}>
-    <Button variant="primary" onClick={handleShow}>
-        Tus clases
-    </Button>
-    <div
-        style={{
-            position: 'absolute',
-            top: '-10px',
-            right: '-10px',
-            backgroundColor: 'red',
-            color: 'white',
-            borderRadius: '50%',
-            padding: '5px 10px',
-            fontSize: '12px',
-        }}
-    >
-        {clasesConfirmadas.length}
-    </div>
-</div>
+            <div style={{ position: 'relative' }}>
+                <Button variant="primary" onClick={handleShow}>
+                    Tus clases
+                </Button>
+                <div
+                    style={{
+                        position: 'absolute',
+                        top: '-10px',
+                        right: '-10px',
+                        backgroundColor: 'red',
+                        color: 'white',
+                        borderRadius: '50%',
+                        padding: '5px 10px',
+                        fontSize: '12px',
+                    }}
+                >
+                    {clasesConfirmadas.length}
+                </div>
+            </div>
 
 
             <Offcanvas show={show} onHide={handleClose}>
@@ -62,18 +63,19 @@ function Example() {
                                     return (
                                         <li key={clase.id}>
                                             {detallesClase.estiloDeClase} (Cantidad: {clase.cantidad})
-                                            <Button
-                                                variant="danger"
-                                                onClick={() => eliminarClaseConfirmada(clase.id)}
-                                            >
-                                                Eliminar
-                                            </Button>
                                             <div>
                                                 <strong>Días y Horarios:</strong> {detallesClase.horario.dias.join(", ")} a las {detallesClase.horario.horas.join(", ")}
                                             </div>
                                             <div>
                                                 <strong>Valor Clase:</strong> ${detallesClase.valorClase}
                                             </div>
+                                            <Button
+                                                variant="danger"
+                                                onClick={() => eliminarClaseConfirmada(clase.id)}
+                                                style={{ display: "list-item" }}
+                                            >
+                                                Eliminar
+                                            </Button>
                                         </li>
                                     );
                                 })}

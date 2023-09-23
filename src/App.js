@@ -19,6 +19,7 @@ function App() {
           <Route path="/item/:id" element={<ItemListDetail />} />
           <Route path="/CalendarioSemanal" element={<ItemDetail />} />
           <Route path="/Categorias" element={<Categorias />} />
+          <Route path="/ItemListContainer" element={<ItemListContainer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ClasesProvider>
