@@ -1,9 +1,11 @@
+import "./cajaDatos.css"
+
 import React, { useState } from 'react';
+
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { useClases } from "../clasesContext";
 import clasesData from "../Data/clases.json";
-import "./cajaDatos.css"
+import { useClases } from "../clasesContext";
 
 function Example() {
     const [show, setShow] = useState(false);

@@ -1,12 +1,13 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NavbarCategory from "./componentes/Navbar/Navbar"
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Categorias from './componentes/Navbar/ListProfesionales/Categorias';
+import { ClasesProvider } from "./componentes/clasesContext"
 import Home from "./componentes/Home/Home"
+import ItemDetail from "./componentes/ItemListDetail/ItemDetail"
 import ItemListContainer from "./componentes/ItemListConteiner/ItemListConteiner"
 import ItemListDetail from "./componentes/ItemListDetail/ItemListDetail"
-import { ClasesProvider } from "./componentes/clasesContext"
-import ItemDetail from "./componentes/ItemListDetail/ItemDetail"
-import Categorias from './componentes/Navbar/ListProfesionales/Categorias';
+import NavbarCategory from "./componentes/Navbar/Navbar"
+import React from 'react';
 
 function App() {
   return (
