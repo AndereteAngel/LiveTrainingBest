@@ -1,14 +1,45 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { collection, getDocs, query } from "firebase/firestore";
+
+import { getFirestore } from "firebase/firestore";
 
 const ClasesContext = createContext();
 
 export function ClasesProvider({ children }) {
   const [clasesConfirmadas, setClasesConfirmadas] = useState([]);
-  const [cantidadClases, setCantidadClases] = useState(0); 
+
+  const loadFirebaseData = async () => {
+    const db = getFirestore();
+    const q = query(collection(db, "clasesConfirmadas"));
+
+    try {
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map((doc) => doc.data());
+      setClasesConfirmadas(data);
+    } catch (error) {
+      console.error("Error al cargar datos de Firebase:", error);
+    }
+  };
+
+  const eliminarClaseDelCarrito = (claseId) => {
+    const nuevasClasesCarrito = clasesConfirmadas.filter(
+      (clase) => clase.id !== claseId
+    );
+    setClasesConfirmadas(nuevasClasesCarrito);
+  };
+
+  useEffect(() => {
+    loadFirebaseData();
+  }, []);
 
   return (
     <ClasesContext.Provider
-      value={{ clasesConfirmadas, setClasesConfirmadas, cantidadClases, setCantidadClases }}
+      value={{
+        clasesConfirmadas,
+        setClasesConfirmadas,
+        eliminarClaseDelCarrito,
+        loadFirebaseData,
+      }}
     >
       {children}
     </ClasesContext.Provider>

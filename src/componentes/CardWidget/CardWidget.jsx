@@ -1,45 +1,71 @@
-import React from "react";
-import clases from "../Data/clases.json";
 import "./cardWidget.css";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { Link } from 'react-router-dom';
 
+import { collection, getDocs, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
-function BasicExample() {
+import { Link } from "react-router-dom";
+import { getFirestore } from "firebase/firestore";
+
+const CardWidget = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const db = getFirestore();
+    const q = query(collection(db, "items"));
+
+    getDocs(q)
+      .then((querySnapshot) => {
+        const productsData = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          productsData.push({
+            id: doc.id,
+            profesional: data.profesional,
+            lugar: data.lugar,
+            estiloDeClase: data.estiloDeClase,
+            valor: data.valor,
+            img: data.img,
+          });
+        });
+        setProducts(productsData);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los productos:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
   return (
     <div className="card-container">
-      {clases.map((clase) => (
-        <Card key={clase.id} style={{ width: "18rem" }} className="text-center">
-          <Card.Img
-            variant="top"
-            src={clase.img}
-            alt={`Clase de ${clase.estiloDeClase} con ${clase.profesional}`}
+      {products.map((product) => (
+        <div key={product.id} className="card">
+          <img
+            src={product.img}
+            alt={`Clase de ${product.estiloDeClase} con ${product.profesional}`}
           />
-          <Card.Body>
-            <Card.Title>{`Clase de ${clase.estiloDeClase}`}</Card.Title>
-            <Card.Text>
-              <strong>Profesional:</strong> {clase.profesional}
-            </Card.Text>
-            <Card.Text>
-              <strong>Lugar:</strong> {clase.lugar}
-            </Card.Text>
-            <Card.Text>
-              <strong>Categoría:</strong> {clase.categoria}
-            </Card.Text>
-            <Card.Text>
-              <strong>Horario:</strong> {clase.horario.dias.join(", ")} a las{" "}
-              {clase.horario.horas.join(", ")}
-            </Card.Text>
-            <Link to={`/item/${clase.id}`}>
-              <Button variant="primary">Agregar a tu rutina</Button>
-            </Link>
-          </Card.Body>
-          <Card.Footer className="text-muted">LiveTrainig</Card.Footer>
-        </Card>
+          <div className="card-title">{`Clase de ${product.estiloDeClase}`}</div>
+          <div className="card-text">
+            <strong>Profesional:</strong> {product.profesional}
+          </div>
+          <div className="card-text">
+            <strong>Lugar:</strong> {product.lugar}
+          </div>
+          <div className="card-text">
+            <strong>Valor: ${product.valor}</strong>
+          </div>
+          <Link to={`/item/${product.id}`} className="btn-agregar">
+            Agregar a tu rutina
+          </Link>
+        </div>
       ))}
     </div>
   );
-}
+};
 
-export default BasicExample;
+export default CardWidget;

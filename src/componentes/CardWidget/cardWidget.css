@@ -1,27 +1,36 @@
-
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  grid-template-rows: repeat(3, 1fr); 
-  grid-gap: 20px; 
-  justify-content: center; 
-  align-content: center; 
-  max-width: 1200px; 
-  margin: 0 auto; 
-}
-
+/* Estilo base para la tarjeta */
 .card {
-  background-color: #f0f0f0; 
+  width: 100%;
+  max-width: 350px; /* Ancho máximo de la tarjeta en pantallas más grandes */
+  margin: 0 auto;
+  background: linear-gradient(to bottom, rgb(255, 0, 0), silver);
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
   transition: transform 0.2s ease-in-out;
-  overflow: hidden; 
+  overflow: hidden;
+}
+
+/* Estilo de la tarjeta en dispositivos más pequeños, como móviles */
+@media (max-width: 767px) {
+  .card {
+    max-width: 100%; /* Ocupa todo el ancho disponible en dispositivos pequeños */
+    margin: 10px 0; /* Agrega un espacio vertical entre las tarjetas en dispositivos pequeños */
+  }
+}
+
+/* Estilo de la cuadrícula de cuatro columnas en pantallas grandes */
+@media (min-width: 768px) {
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas con igual ancho */
+    gap: 20px; /* Espacio entre las tarjetas */
+  }
 }
 
 .card:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .card img {
@@ -40,9 +49,8 @@
   margin-bottom: 10px;
 }
 
-
 .btn-agregar {
-  background-color: #007bff;
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0.849), silver);
   color: #fff;
   text-decoration: none;
   padding: 10px 20px;
@@ -54,5 +62,24 @@
 }
 
 .btn-agregar:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to bottom, #ff0000, #c0c0c0);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+.card-spinning {
+  animation: spin 1s linear;
+}
+
+.card-spinning .card {
+  background: linear-gradient(to bottom, #ff0000, #c0c0c0);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
 }

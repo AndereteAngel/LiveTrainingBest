@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import "./home.css"
+
+import Autenticacion from '../Auth/auth';
+import React from 'react';
 
 function Home() {
     return (
@@ -13,9 +14,8 @@ function Home() {
             />
             <h1 className="center-text">Bienvenido al Gimnasio Virtual</h1>
             <p className="center-text">¡No te canses de entrenar!</p>
-            <Link to="/items" className="btn-ingresar">
-                Ingresar
-            </Link>
+           
+            <Autenticacion/>
         </div>
     );
 }

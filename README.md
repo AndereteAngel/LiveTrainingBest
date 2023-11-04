@@ -1,6 +1,6 @@
 LiveTrainigBest
 
-Se intenta ofrece al cliente un abanico de  posibilidades en elacion a las distintas formas de entrenamieto. El cliente poda escoge q entrenamiento realizar y la cantidad de estimulos semanales.
+Se intenta ofrecer al cliente un abanico de  posibilidades en relacion a las distintas formas de entrenamieto. El cliente poda escoger q entrenamiento realizar y la cantidad de estimulos semanales.
 
 en la pagina encontraremos vaios compeentes para conseguir la infomacion necesaria:
 

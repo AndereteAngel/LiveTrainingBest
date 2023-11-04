@@ -1,85 +1,132 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import clasesData from "../Data/clases.json";
-import { useClases } from "../clasesContext";
 import "./itemListDetail.css"
 
+import React, { useEffect, useState } from "react";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+  serverTimestamp,
+} from "firebase/firestore";
+import {
+  getAuth,
+  onAuthStateChanged,
+} from "firebase/auth";
+
+import { useClases } from "../clasesContext";
+import { useParams } from "react-router-dom";
+
 const ItemListDetail = () => {
+  const { setClasesConfirmadas } = useClases();
   const { id } = useParams();
-  const { cantidadClases, setCantidadClases, clasesConfirmadas, setClasesConfirmadas } = useClases();
-  const claseSeleccionada = clasesData.find((clase) => clase.id === parseInt(id, 10));
+  const [item, setItem] = useState(null);
+  const [cantidadClases, setCantidadClases] = useState(1);
+  const [user, setUser] = useState(null); // Almacenar información del usuario autenticado
+  const [isSpinning, setIsSpinning] = useState(false); // Agrega el estado para la animación
 
-  if (!claseSeleccionada) {
-    return <div>No se encontró la tarjeta seleccionada.</div>;
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    const loadItem = async () => {
+      const db = getFirestore();
+      const itemRef = doc(db, "items", id);
+      try {
+        const itemSnapshot = await getDoc(itemRef);
+        if (itemSnapshot.exists()) {
+          setItem(itemSnapshot.data());
+        } else {
+          console.log("No se encontró la tarjeta seleccionada");
+        }
+      } catch (error) {
+        console.error("Error al obtener la tarjeta:", error);
+      }
+    };
+
+    loadItem();
+  }, [id]);
+
+  if (!item) {
+    return <div>Cargando...</div>;
   }
-
-  const { img, profesional, lugar, estiloDeClase, categoria, horario, valorClase } = claseSeleccionada;
 
   const aumentarCantidad = () => {
     setCantidadClases(cantidadClases + 1);
   };
 
   const restarCantidad = () => {
-    if (cantidadClases > 0) {
+    if (cantidadClases > 1) {
       setCantidadClases(cantidadClases - 1);
     }
   };
 
-  const confirmarClase = () => {
+  const confirmarClases = async () => {
+    if (!user) {
+      console.log("El usuario no está autenticado");
+      return;
+    }
+
     const claseConfirmada = {
-      id: claseSeleccionada.id,
-      nombre: `Clase de ${estiloDeClase} con ${profesional}`,
+      id: item.id,
+      estiloDeClase: item.estiloDeClase,
+      profesional: item.profesional || "Valor predeterminado",
+      lugar: item.lugar || "Valor predeterminado",
+      valorClase: item.valor || 0,
       cantidad: cantidadClases,
-      valor: valorClase,
+      fecha: serverTimestamp(),
+      usuario: user.email,
     };
-    setClasesConfirmadas([...clasesConfirmadas, claseConfirmada]);
+
+    const db = getFirestore();
+    const carritoRef = collection(db, "carrito");
+    await addDoc(carritoRef, claseConfirmada);
+
+    setClasesConfirmadas((prevClases) => [...prevClases, claseConfirmada]);
   };
 
-  return (
-    <div className="cardContainer">
-      <Card key={claseSeleccionada.id} style={{ width: "18rem" }} className="text-center">
-        <Card.Img
-          variant="top"
-          src={img}
-          alt={`Clase de ${estiloDeClase} con ${profesional}`}
-        />
-        <Card.Body>
-          <Card.Title>{`Clase de ${estiloDeClase}`}</Card.Title>
-          <Card.Text>
-            <strong>Profesional:</strong> {profesional}
-          </Card.Text>
-          <Card.Text>
-            <strong>Lugar:</strong> {lugar}
-          </Card.Text>
-          <Card.Text>
-            <strong>Categoría:</strong> {categoria}
-          </Card.Text>
-          <Card.Text>
-            <strong>Horario:</strong> {horario.dias.join(", ")} a las{" "}
-            {horario.horas.join(", ")}
-          </Card.Text>
-          <Card.Text>
-            <strong>Valor Clase:</strong> ${valorClase}
-          </Card.Text>
-          <div className="cantidadClases">
-            <Button variant="secondary" onClick={restarCantidad}>
-              -
-            </Button>
-            <span>Cantidad de Clases: {cantidadClases}</span>
-            <Button variant="secondary" onClick={aumentarCantidad}>
-              +
-            </Button>
-          </div>
-          <Button variant="primary" onClick={confirmarClase} className="confirmar-button">
-            Confirmar
-          </Button>
-        </Card.Body>
-        <Card.Footer className="text-muted">LiveTraining</Card.Footer>
-      </Card>
-    </div>
-  );
-};
+  const agregarClase = () => {
+    setIsSpinning(true);
 
+
+    setTimeout(() => {
+      setIsSpinning(false);
+      confirmarClases();
+    }, 1000);
+  };
+
+ return (
+   <div className="card">
+     {" "}
+     <h1>{item.estiloDeClase}</h1>
+     <p>Profesional: {item.profesional}</p>
+     <p>Lugar: {item.lugar}</p>
+     <p>Valor: ${item.valor}</p>
+     <img
+       src={item.img}
+       alt={`Clase de ${item.estiloDeClase} con ${item.profesional}`}
+       className={isSpinning ? "card-spinning" : ""} 
+     />
+     <div>
+       <button onClick={restarCantidad}>-</button>
+       <span>Cantidad de Clases: {cantidadClases}</span>
+       <button onClick={aumentarCantidad}>+</button>
+     </div>
+     <button onClick={agregarClase} className="btn-agregar">
+       Agregar
+     </button>
+   </div>
+ );
+
+};
 export default ItemListDetail;

@@ -1,0 +1,105 @@
+/* Estilo para el contenedor principal del carrito */
+#carrito-container {
+  position: relative;
+}
+
+
+#carrito-button {
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0.849), silver);
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 5px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#carrito-button:hover {
+  background: linear-gradient(to bottom, #ff0000, #c0c0c0);
+}
+
+#carrito-counter {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+/* Estilo para la lista de clases en el carrito */
+#carrito-list {
+  list-style: none;
+  padding: 0;
+}
+
+#carrito-list li {
+  background: linear-gradient(to bottom, rgb(255, 0, 0), silver);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+#carrito-list li:hover {
+  transform: scale(1.05);
+}
+
+#carrito-list li strong {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Estilo para el botón "Eliminar" en la lista de clases */
+#eliminar-button {
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0.849), silver);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 0.75rem;
+  transition: background-color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+}
+
+#eliminar-button:hover {
+  background: linear-gradient(to bottom, #ff0000, #c0c0c0);
+}
+
+/* Estilo para el botón "Confirmar clases" */
+#confirmar-button {
+  background: linear-gradient(to bottom, rgba(255, 0, 0, 0.849), silver);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 1.2rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#confirmar-button:hover {
+  background: linear-gradient(to bottom, #ff0000, #c0c0c0);
+}
+
+/* Estilo para la animación de la lista de clases */
+.card-spinning {
+  animation: spin 1s linear;
+}
+
+/* Estilo para la tarjeta cuando está girando */
+.card-spinning #carrito-list li {
+  background: linear-gradient(to bottom, #ff0000, #c0c0c0);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
